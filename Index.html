@@ -3,102 +3,309 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Workspace — Initialization</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<title>ForAll — Analytics Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght=0,700;0,900;1,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iNCIgZmlsbD0iIzEwMTkxNycvPjxjaXJjbGUgY3g9IjE2IiBjeT0iMTYiIHI9IjkiIGZipro9Im5vbmUiIHN0cm9rZT0iI2Y0ZjNmMSIgc3Ryb2tlLXdpZHRoPSIyLjUiLz48Y2lyY2xlIGN4PSIxNiIgY3k9IjE2IiByPSI0IiBmaWxsPSIjMDBGMEZGIi8+PC9zdmc+">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iNCIgZmlsbD0iIzEwMTkxNycvPjxjaXJjbGUgY3g9IjE2IiBjeT0iMTYiIHI9IjkiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2Y0ZjNmMSIgc3Ryb2tlLXdpZHRoPSIyLjUiLz48Y2lyY2xlIGN4PSIxNiIgY3k9IjE2IiByPSI0IiBmaWxsPSIjMDBGMEZGIi8+PC9zdmc+">
 
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
   :root {
     --bg:    #f4f3f1;
+    --bg2:   #eceae6;
     --ink:   #1a1917;
     --mid:   #5a5854;
     --muted: #9e9b96;
     --faint: #d6d3cd;
     --white: #fdfcfa;
   }
-  html, body { height: 100%; background: var(--bg); color: var(--ink); font-family: 'DM Mono', monospace; }
-  .wrapper {
+
+  html, body { height: 100%; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'DM Mono', monospace;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .page {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  header {
+    grid-column: 1 / -1;
+    padding: 36px 60px 28px;
+    border-bottom: 1px solid var(--faint);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    opacity: 0;
+    animation: fadeIn 0.5s ease 0.1s forwards;
+  }
+
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+  .logo em { font-style: italic; color: var(--muted); }
+
+  .header-meta {
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: right;
+    line-height: 1.9;
+  }
+
+  /* LEFT PANEL */
+  .left {
+    padding: 56px 56px 56px;
+    border-right: 1px solid var(--faint);
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 40px;
-    text-align: center;
+    justify-content: space-between;
+    gap: 48px;
+    opacity: 0;
+    animation: fadeIn 0.5s ease 0.2s forwards;
   }
-  .container {
-    max-width: 600px;
-    padding: 60px 40px;
-    background: var(--white);
-    border: 1px solid var(--faint);
-    position: relative;
+
+  .hero-label {
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 18px;
   }
-  .logo-text {
+
+  .hero-title {
     font-family: 'Playfair Display', serif;
-    font-size: 24px;
-    font-weight: 700;
-    margin-bottom: 32px;
+    font-size: clamp(38px, 4.5vw, 68px);
+    font-weight: 900;
+    line-height: 0.98;
+    letter-spacing: -2px;
+    margin-bottom: 24px;
   }
-  .logo-text em { font-style: italic; color: var(--muted); }
+  .hero-title em { font-style: italic; color: var(--muted); }
+
+  .hero-sub {
+    font-size: 12px;
+    color: var(--mid);
+    line-height: 1.9;
+    max-width: 320px;
+  }
+
+  .counter-block {
+    border-top: 1px solid var(--faint);
+    padding-top: 24px;
+  }
   
-  .status-tag {
+  .counter-title {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+  
+  .counter-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1;
+  }
+
+  /* RIGHT PANEL (REPORTS LIST) */
+  .right {
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    animation: fadeIn 0.5s ease 0.3s forwards;
+  }
+
+  .tool-card {
+    flex: 1;
+    padding: 52px 52px 44px;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.25s;
+    border-bottom: 1px solid var(--faint);
+  }
+  .tool-card:last-child { border-bottom: none; }
+  .tool-card:hover { background: var(--white); }
+
+  /* DECORATIVE ELEMENTS */
+  .tool-card .deco-sector {
+    position: absolute;
+    left: -40px;
+    bottom: -40px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: var(--faint);
+    opacity: 0.15;
+    clip-path: polygon(100% 0, 100% 100%, 0 100%);
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+  .tool-card:hover .deco-sector { opacity: 0.3; }
+
+  .card-num {
     font-size: 10px;
     letter-spacing: 3px;
     text-transform: uppercase;
     color: var(--muted);
-    border: 1px solid var(--faint);
-    padding: 4px 12px;
-    border-radius: 20px;
-    display: inline-block;
-    margin-bottom: 24px;
+    position: relative; z-index: 1;
   }
-  h1 {
+
+  .card-title {
     font-family: 'Playfair Display', serif;
-    font-size: 36px;
-    font-weight: 900;
+    font-size: 30px;
+    font-weight: 700;
     line-height: 1.1;
-    margin-bottom: 16px;
     letter-spacing: -0.5px;
+    position: relative; z-index: 1;
   }
-  p {
-    font-size: 13px;
+
+  .card-desc {
+    font-size: 12px;
     color: var(--mid);
     line-height: 1.8;
-    margin-bottom: 32px;
+    max-width: 340px;
+    position: relative; z-index: 1;
   }
-  .footer-meta {
+
+  .card-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    position: relative; z-index: 1;
+  }
+
+  .pill {
+    font-size: 9px;
+    padding: 3px 10px;
+    border: 1px solid var(--faint);
+    color: var(--muted);
+    border-radius: 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .tool-card:hover .pill { border-color: var(--muted); color: var(--mid); }
+
+  .card-arrow {
+    font-size: 18px;
+    color: var(--faint);
+    margin-top: auto;
+    transition: color 0.2s, transform 0.2s;
+    position: relative; z-index: 1;
+    width: fit-content;
+  }
+  .tool-card:hover .card-arrow { color: var(--ink); transform: translateX(6px); }
+
+  /* FOOTER */
+  footer {
+    grid-column: 1 / -1;
+    padding: 18px 60px;
+    border-top: 1px solid var(--faint);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     font-size: 10px;
     color: var(--muted);
     letter-spacing: 1px;
-    border-top: 1px solid var(--faint);
-    padding-top: 24px;
-    margin-top: 16px;
-    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeIn 0.5s ease 0.5s forwards;
   }
+
   .dot {
     display: inline-block;
-    width: 6px; height: 6px;
+    width: 5px; height: 5px;
     border-radius: 50%;
     background: #00F0FF;
-    margin-right: 8px;
+    margin-right: 7px;
+    animation: blink 2.5s ease-in-out infinite;
+  }
+
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.2} }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+
+  @media (max-width: 768px) {
+    .page { grid-template-columns: 1fr; }
+    .left { border-right: none; border-bottom: 1px solid var(--faint); padding: 40px 28px; }
+    .tool-card { padding: 36px 28px; }
+    header, footer { padding: 24px 28px; }
   }
 </style>
 </head>
 <body>
+<div class="page">
 
-<div class="wrapper">
-  <div class="container">
-    <div class="status-tag">// repository initialized</div>
-    <div class="logo-text">Cyber<em>netica</em></div>
-    <h1>Новый контекст подготовлен</h1>
-    <p>Репозиторий успешно запущен. Локальный индексный файл настроен и готов к развертыванию модулей, автоматизаций или документации текущей вертикали.</p>
-    <div class="footer-meta">
-      <span class="dot"></span>alekseenkovads.github.io · май 2026
-    </div>
+<header>
+  <div class="logo">For<em>All</em></div>
+  <div class="header-meta">github.io / forall<br>Май 2026</div>
+</header>
+
+<div class="left">
+  <div>
+    <div class="hero-label">// global analytics</div>
+    <h1 class="hero-title">Data<br>Streams<br><em>hub</em></h1>
+    <p class="hero-sub">Изолированный репозиторий сквозных маркетинговых отчетов, внешних аудитов и выгрузок рекламных кампаний.</p>
+  </div>
+
+  <div class="counter-block">
+    <div class="counter-title">// загружено отчетов</div>
+    <div class="counter-value">01</div>
   </div>
 </div>
 
+<div class="right">
+  
+  <a class="tool-card" href="vk_promo_report.html" target="_blank" rel="noopener">
+    <div class="deco-sector"></div>
+    <div class="card-num">01 / Traffic Arbitrage</div>
+    <div class="card-title">VK Promo Report</div>
+    <p class="card-desc">Анализ эффективности промо-кампаний ВКонтакте: трафик, конверсии, стоимость удержания и ROI по кампаниям.</p>
+    <div class="card-pills">
+      <span class="pill">VK API</span>
+      <span class="pill">Marketing</span>
+      <span class="pill">ROI Analytics</span>
+    </div>
+    <div class="card-arrow">→</div>
+  </a>
+
+  <div class="tool-card" style="opacity: 0.45; cursor: not-allowed; background: none;">
+    <div class="card-num">02 / Pipeline</div>
+    <div class="card-title">Next Report</div>
+    <p class="card-desc">Следующий аналитический модуль будет автоматически добавлен в этот слот при загрузке файла в репозиторий.</p>
+    <div class="card-pills">
+      <span class="pill">Pending</span>
+    </div>
+    <div class="card-arrow" style="transform: none; color: var(--faint);">×</div>
+  </div>
+
+</div>
+
+<footer>
+  <span><span class="dot"></span>alekseenkovads.github.io/ForAll</span>
+  <span>Data isolated · updated may 2026</span>
+</footer>
+
+</div>
 </body>
 </html>
