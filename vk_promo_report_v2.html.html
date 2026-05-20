@@ -2,86 +2,94 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<title>Отчёт по кампании VK promo · 15–20 мая 2026</title>
+<title>Отчёт VK promo + годовой контекст · 15–20 мая 2026</title>
 <style>
-  :root {
-    --bg: #0f1226; 
-    --panel: #171a35; 
-    --panel2: #1f2347; 
-    --line: #2a2f5c;
-    --text: #eef0ff; 
-    --muted: #9aa1c7; 
-    --accent: #7c5cff; 
-    --accent2: #22d3ee;
-    --shadow: 0 10px 30px rgba(0,0,0,.35); 
-    --radius: 16px;
+  :root{
+    --bg:#0f1226; --panel:#171a35; --panel2:#1f2347; --line:#2a2f5c;
+    --text:#eef0ff; --muted:#9aa1c7; --accent:#7c5cff; --accent2:#22d3ee;
+    --good:#34d399; --warm:#f59e0b; --pink:#ec4899; --rose:#fb7185;
+    --shadow:0 10px 30px rgba(0,0,0,.35); --radius:16px;
   }
-  * {
-    box-sizing: border-box;
-  }
-  body {
-    margin: 0;
-    background-color: var(--bg);
-    position: relative;
-    color: var(--text);
-    font: 15px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Arial, sans-serif;
-  }
-  /* Безопасное наложение декоративных фоновых градиентов */
-  body::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: 
-      radial-gradient(1200px 600px at 10% 0%, #2a1e6b33, transparent),
-      radial-gradient(900px 500px at 110% 10%, #0ea5e933, transparent);
-    z-index: -1;
-    pointer-events: none;
-  }
-  .wrap { max-width: 1180px; margin: 0 auto; padding: 40px 24px 56px; }
-  header.hero { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-bottom: 28px; position: relative; z-index: 2; }
-  .hero h1 { margin: 12px 0 6px; font-size: 32px; letter-spacing: -.5px; line-height: 1.2; color: #fff; }
-  .hero .sub { color: var(--muted); font-size: 14px; }
-  .badge { display: inline-block; padding: 6px 12px; border-radius: 999px; background: linear-gradient(90deg, var(--accent), var(--accent2)); color: #0b0e22; font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: .6px; }
-  .meta { display: flex; gap: 16px; flex-wrap: wrap; color: var(--muted); font-size: 13px; margin-top: 5px; }
-  .meta b { color: var(--text); font-weight: 600; }
-  .tag { display: inline-block; font-size: 11px; color: var(--muted); border: 1px solid var(--line); padding: 3px 8px; border-radius: 999px; margin-right: 6px; }
-  .grid { display: grid; gap: 18px; }
-  .kpis { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-  @media(max-width: 880px) { .kpis { grid-template-columns: repeat(2, 1fr); } }
-  @media(max-width: 520px) { .kpis { grid-template-columns: 1fr; } }
-  .card { background: linear-gradient(180deg, var(--panel), var(--panel2)); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); position: relative; overflow: hidden; }
-  .card .lbl { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .7px; }
-  .card .val { font-size: 30px; font-weight: 700; margin-top: 6px; letter-spacing: -.5px; }
-  .card .hint { color: var(--muted); font-size: 13px; margin-top: 4px; }
-  .pill { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; }
-  .pill.purple { background: #7c5cff22; color: #c4b5fd; }
-  .pill.cyan { background: #22d3ee22; color: #67e8f9; }
-  section { margin-top: 28px; }
-  h2 { font-size: 20px; margin: 0 0 14px; letter-spacing: -.3px; }
-  h3 { font-size: 13px; margin: 0 0 8px; color: var(--muted); text-transform: uppercase; letter-spacing: .6px; }
-  .split { grid-template-columns: 1.2fr 1fr; }
-  @media(max-width: 880px) { .split { grid-template-columns: 1fr; } }
-  table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 14px; }
-  th, td { padding: 12px; text-align: right; border-bottom: 1px solid var(--line); }
-  th:first-child, td:first-child { text-align: left; }
-  thead th { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; }
-  tbody tr:hover { background: #ffffff05; }
-  .row-hl { background: linear-gradient(90deg, #7c5cff14, transparent); }
-  .row-total { font-weight: 600; background: #ffffff06; }
-  .stacked { height: 34px; width: 100%; border-radius: 10px; overflow: hidden; display: flex; border: 1px solid var(--line); }
-  .stacked span { display: flex; align-items: center; justify-content: center; font-size: 12px; color: #0b0e22; font-weight: 700; white-space: nowrap; }
-  .legend { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 10px; color: var(--muted); font-size: 12px; }
-  .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 6px; vertical-align: middle; }
-  .bars { display: flex; flex-direction: column; gap: 10px; margin-top: 6px; }
-  .bar { display: grid; grid-template-columns: 80px 1fr 80px; align-items: center; gap: 12px; }
-  .bar .name { color: var(--text); font-weight: 600; }
-  .bar .track { height: 14px; background: #ffffff0d; border-radius: 8px; overflow: hidden; border: 1px solid var(--line); }
-  .bar .fill { height: 100%; background: linear-gradient(90deg, #7c5cff, #22d3ee); }
-  .bar .num { color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; }
-  ul.takeaways { padding-left: 18px; margin: 0; }
-  ul.takeaways li { margin: 8px 0; color: #e7eaff; }
-  ul.takeaways li b { color: #fff; }
-  footer { margin-top: 36px; color: var(--muted); font-size: 12px; text-align: center; }
+  *{box-sizing:border-box}
+  body{margin:0;background:
+    radial-gradient(1200px 600px at 10% -10%, #2a1e6b33, transparent),
+    radial-gradient(900px 500px at 110% 10%, #0ea5e933, transparent),
+    var(--bg);
+    color:var(--text);font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif}
+  .wrap{max-width:1200px;margin:0 auto;padding:32px 24px 56px}
+  header.hero{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:18px}
+  .hero h1{margin:10px 0 6px;font-size:30px;letter-spacing:-.5px}
+  .hero .sub{color:var(--muted);font-size:14px}
+  .badge{display:inline-block;padding:6px 12px;border-radius:999px;background:linear-gradient(90deg,var(--accent),var(--accent2));color:#0b0e22;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.6px}
+  .meta{display:flex;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:13px}
+  .meta b{color:var(--text);font-weight:600}
+  .tag{display:inline-block;font-size:11px;color:var(--muted);border:1px solid var(--line);padding:3px 8px;border-radius:999px;margin-right:6px}
+  .anchor{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 0}
+  .anchor a{font-size:12px;color:#cbd5e1;text-decoration:none;border:1px solid var(--line);padding:6px 10px;border-radius:999px;background:#ffffff05}
+  .anchor a:hover{background:#ffffff10}
+  .grid{display:grid;gap:18px}
+  .kpis{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .kpis-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+  @media(max-width:880px){.kpis,.kpis-3{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:520px){.kpis,.kpis-3{grid-template-columns:1fr}}
+  .card{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .card .lbl{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.7px}
+  .card .val{font-size:28px;font-weight:700;margin-top:6px;letter-spacing:-.5px}
+  .card .hint{color:var(--muted);font-size:13px;margin-top:4px}
+  .pill{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:600}
+  .pill.purple{background:#7c5cff22;color:#c4b5fd}
+  .pill.cyan{background:#22d3ee22;color:#67e8f9}
+  .pill.green{background:#34d39922;color:#86efac}
+  .pill.amber{background:#f59e0b22;color:#fcd34d}
+  .pill.rose{background:#fb718522;color:#fda4af}
+  section{margin-top:34px}
+  h2{font-size:22px;margin:0 0 6px;letter-spacing:-.3px}
+  .section-sub{color:var(--muted);font-size:13px;margin:0 0 14px}
+  h3{font-size:13px;margin:0 0 8px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
+  .split{grid-template-columns:1.2fr 1fr}
+  .split-1-1{grid-template-columns:1fr 1fr}
+  @media(max-width:880px){.split,.split-1-1{grid-template-columns:1fr}}
+  table{width:100%;border-collapse:separate;border-spacing:0;font-size:14px}
+  th,td{padding:11px 12px;text-align:right;border-bottom:1px solid var(--line)}
+  th:first-child,td:first-child{text-align:left}
+  thead th{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+  tbody tr:hover{background:#ffffff05}
+  .row-hl{background:linear-gradient(90deg,#7c5cff14,transparent)}
+  .row-total{font-weight:600;background:#ffffff06}
+  .stacked{height:34px;width:100%;border-radius:10px;overflow:hidden;display:flex;border:1px solid var(--line)}
+  .stacked span{display:flex;align-items:center;justify-content:center;font-size:12px;color:#0b0e22;font-weight:700;white-space:nowrap}
+  .legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;color:var(--muted);font-size:12px}
+  .legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:middle}
+  .bars{display:flex;flex-direction:column;gap:10px;margin-top:6px}
+  .bar{display:grid;grid-template-columns:90px 1fr 80px;align-items:center;gap:12px}
+  .bar .name{color:var(--text);font-weight:600}
+  .bar .track{height:14px;background:#ffffff0d;border-radius:8px;overflow:hidden;border:1px solid var(--line)}
+  .bar .fill{height:100%;background:linear-gradient(90deg,#7c5cff,#22d3ee)}
+  .bar .num{color:var(--muted);text-align:right;font-variant-numeric:tabular-nums}
+  ul.takeaways{padding-left:18px;margin:0}
+  ul.takeaways li{margin:8px 0;color:#e7eaff}
+  ul.takeaways li b{color:#fff}
+  .timeline{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:6px}
+  @media(max-width:720px){.timeline{grid-template-columns:1fr}}
+  .step{position:relative;padding:18px;border-radius:14px;border:1px solid var(--line);background:#0f1330}
+  .step .step-tag{font-size:11px;letter-spacing:.6px;text-transform:uppercase;color:var(--muted)}
+  .step .step-val{font-size:24px;font-weight:700;margin-top:6px}
+  .step .step-cap{color:var(--muted);font-size:13px;margin-top:6px}
+  .step.s1{box-shadow:inset 4px 0 0 #fb7185}
+  .step.s2{box-shadow:inset 4px 0 0 #f59e0b}
+  .step.s3{box-shadow:inset 4px 0 0 #7c5cff}
+  .notebox{border:1px solid #f59e0b55;background:#f59e0b14;border-radius:12px;padding:14px 16px;color:#fde68a;font-size:13.5px;margin-top:12px}
+  .notebox b{color:#fff}
+  .infobox{border:1px solid #22d3ee55;background:#22d3ee10;border-radius:12px;padding:14px 16px;color:#a5f3fc;font-size:13.5px;margin-top:12px}
+  .infobox b{color:#fff}
+  .findings{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:880px){.findings{grid-template-columns:1fr 1fr}}
+  @media(max-width:520px){.findings{grid-template-columns:1fr}}
+  .finding{padding:16px;border-radius:14px;border:1px solid var(--line);background:#0f1330}
+  .finding .ftitle{font-weight:700;margin-bottom:4px}
+  .finding .fmeta{font-size:12px;color:var(--muted);margin-bottom:8px}
+  .finding .fdesc{color:#e7eaff;font-size:13.5px}
+  footer{margin-top:36px;color:var(--muted);font-size:12px;text-align:center}
 </style>
 </head>
 <body>
@@ -89,19 +97,34 @@
 
   <header class="hero">
     <div>
-      <span class="badge">Отчёт по рекламной кампании</span>
-      <h1>VK · promo · post1 / post2 / post3</h1>
-      <div class="sub">Сводка по UTM-кампании за период 15–20 мая 2026</div>
+      <span class="badge">Расширенный отчёт · v2</span>
+      <h1>VK · promo · post1 / post2 / post3 + годовой контекст</h1>
+      <div class="sub">Анализ кампании за 15–20 мая 2026 на фоне всего наблюдаемого периода счётчика</div>
     </div>
     <div class="meta">
       <div><span class="tag">Счётчик</span><b>Gorillamlbb_main</b> (108484411)</div>
-      <div><span class="tag">Период</span><b>15.05.2026 — 20.05.2026</b></div>
+      <div><span class="tag">Период РК</span><b>15.05.2026 — 20.05.2026</b></div>
+      <div><span class="tag">Годовой период</span><b>20.05.2025 — 20.05.2026</b></div>
       <div><span class="tag">Атрибуция</span><b>Последний значимый переход</b>, кросс-девайс</div>
     </div>
   </header>
+  <div class="anchor">
+    <a href="#campaign">Кампания</a>
+    <a href="#share">Доля</a>
+    <a href="#creatives">Креативы</a>
+    <a href="#yearctx">Годовой контекст</a>
+    <a href="#launch">Старт сайта</a>
+    <a href="#geo">Гео</a>
+    <a href="#dev">Устройства</a>
+    <a href="#channels">Каналы за год</a>
+    <a href="#tech">Тех. риски</a>
+    <a href="#compare">Сравнение</a>
+    <a href="#next">Дальше</a>
+  </div>
 
-  <section>
-    <h2>Ключевые показатели кампании</h2>
+  <section id="campaign">
+    <h2>Кампания VK promo · ключевые показатели</h2>
+    <p class="section-sub">Период 15–20 мая 2026, источник = vk, medium = promo, кампании post1 / post2 / post3</p>
     <div class="grid kpis">
       <div class="card">
         <div class="lbl">Визиты</div>
@@ -126,10 +149,10 @@
     </div>
   </section>
 
-  <section>
+  <section id="share">
     <h2>Доля кампании в трафике сайта</h2>
+    <p class="section-sub">Период 15–20 мая 2026, всего 36 993 визита</p>
     <div class="card">
-      <h3>Структура визитов за период (всего 36 993)</h3>
       <div class="stacked">
         <span style="width:13.06%;background:#7c5cff">VK promo · 13,1%</span>
         <span style="width:75.60%;background:#22d3ee">Прочая реклама · 75,6%</span>
@@ -143,7 +166,7 @@
     </div>
   </section>
 
-  <section class="grid split">
+  <section id="creatives" class="grid split">
     <div class="card">
       <h2 style="margin-top:0">Разбивка по креативам</h2>
       <div class="bars">
@@ -152,7 +175,6 @@
         <div class="bar"><div class="name">post3</div><div class="track"><div class="fill" style="width:61.33%"></div></div><div class="num">1 188</div></div>
       </div>
       <div class="legend"><span>Шкала — визиты, нормировано к лидеру (post1)</span></div>
-
       <div style="margin-top:18px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
         <div class="card" style="padding:14px"><div class="lbl">post1 · доля</div><div class="val" style="font-size:22px">40,1%</div><div class="hint">от визитов VK promo</div></div>
         <div class="card" style="padding:14px"><div class="lbl">post2 · доля</div><div class="val" style="font-size:22px">35,3%</div><div class="hint">от визитов VK promo</div></div>
@@ -169,62 +191,175 @@
         <div><div class="lbl">Время на сайте</div><div class="val" style="font-size:24px">22 с</div></div>
       </div>
       <p style="color:var(--muted);margin-top:14px;font-size:13.5px">
-        Профиль соответствует охватному формату: пользователь приходит на промо-страницу, быстро знакомится с предложением и совершает целевое действие за пределами сайта. Часть аудитории возвращается повторно — это видно по соотношению визитов и уникальных посетителей.
+        Профиль аудитории соответствует охватному формату в соцсетях: быстрый просмотр промо-страницы, целевое действие совершается за пределами сайта. Часть аудитории возвращается повторно.
       </p>
     </div>
   </section>
 
-  <section>
-    <h2>Сравнение: VK promo · прочая реклама · весь сайт</h2>
+  <section id="yearctx">
+    <h2>Годовой контекст счётчика</h2>
+    <p class="section-sub">Период 20.05.2025 — 20.05.2026</p>
+    <div class="grid kpis-3">
+      <div class="card">
+        <div class="lbl">Визиты за год</div>
+        <div class="val">38 244</div>
+        <div class="hint">≈ 99,4% всего объёма пришлись на май 2026</div>
+      </div>
+      <div class="card">
+        <div class="lbl">Посетители за год</div>
+        <div class="val">31 472</div>
+        <div class="hint">Продакшен-трафик стартовал в мае 2026</div>
+      </div>
+      <div class="card">
+        <div class="lbl">Среднее время за год</div>
+        <div class="val">51 с</div>
+        <div class="hint">Глубина 1,10 · отказы 60,35%</div>
+      </div>
+    </div>
+    <div class="infobox">
+      <b>Важный контекст для сравнений.</b> За весь годовой период счётчика 99,4% визитов пришлись на 12–20 мая 2026. До этого момента сайт работал в режиме подготовки. Полноценное сравнение «период с период» появится после следующих периодов наблюдений — текущая история короткая по построению.
+    </div>
+  </section>
+
+  <section id="launch">
+    <h2>Старт сайта · фазы запуска</h2>
+    <p class="section-sub">Май 2026, разбивка по этапам активности</p>
+    <div class="timeline">
+      <div class="step s1">
+        <div class="step-tag">Фаза 1 · 1–11 мая</div>
+        <div class="step-val">91 визит</div>
+        <div class="step-cap">Подготовительный режим: прямые заходы, поиск, единичные тестовые рекламные клики. Среднее время 1м13с, глубина 1,13.</div>
+      </div>
+      <div class="step s2">
+        <div class="step-tag">Фаза 2 · 12–14 мая</div>
+        <div class="step-val">788 визитов</div>
+        <div class="step-cap">Прогрев и подготовка к запуску: 63% прямых, 14% по ссылкам. Видна тестовая активность команды (внутренние переходы со средним временем 11 мин). Глубина 1,97, отказы 41,4%.</div>
+      </div>
+      <div class="step s3">
+        <div class="step-tag">Фаза 3 · 15–20 мая</div>
+        <div class="step-val">37 261 визит</div>
+        <div class="step-cap">Первый полноценный продакшен-период: активная реклама + органический отклик. Среднее время 47 с, глубина 1,07, отказы 60,9%.</div>
+      </div>
+    </div>
+    <div class="card" style="margin-top:18px">
+      <h3>Динамика по дням пиковой недели</h3>
+      <div class="bars">
+        <div class="bar"><div class="name">15.05</div><div class="track"><div class="fill" style="width:69%"></div></div><div class="num">~6,0k</div></div>
+        <div class="bar"><div class="name">16.05</div><div class="track"><div class="fill" style="width:63%"></div></div><div class="num">~5,5k</div></div>
+        <div class="bar"><div class="name">17.05</div><div class="track"><div class="fill" style="width:100%"></div></div><div class="num">~8,7k</div></div>
+        <div class="bar"><div class="name">18.05</div><div class="track"><div class="fill" style="width:80%"></div></div><div class="num">~7,0k</div></div>
+        <div class="bar"><div class="name">19.05</div><div class="track"><div class="fill" style="width:75%"></div></div><div class="num">~6,5k</div></div>
+        <div class="bar"><div class="name">20.05</div><div class="track"><div class="fill" style="width:34%"></div></div><div class="num">~3,0k</div></div>
+      </div>
+      <div class="legend"><span>Оценочные значения по дневному графику Метрики · пик пришёлся на 17 мая</span></div>
+    </div>
+  </section>
+
+  <section id="geo">
+    <h2>География аудитории</h2>
+    <p class="section-sub">15–20 мая 2026, 37 166 визитов с определённой страной</p>
+    <div class="card">
+      <div class="stacked">
+        <span style="width:96.11%;background:#7c5cff">Россия · 96,1%</span>
+        <span style="width:0.60%;background:#22d3ee"></span>
+        <span style="width:0.41%;background:#34d399"></span>
+        <span style="width:0.27%;background:#f59e0b"></span>
+        <span style="width:0.26%;background:#ec4899"></span>
+        <span style="width:2.35%;background:#475569">прочие · 2,4%</span>
+      </div>
+      <table style="margin-top:14px">
+        <thead><tr><th>Страна</th><th>Визиты</th><th>Доля</th><th>Время</th><th>Глубина</th><th>Отказы</th></tr></thead>
+        <tbody>
+          <tr><td>Россия</td><td>35 719</td><td>96,11%</td><td>46 с</td><td>1,07</td><td>61,68%</td></tr>
+          <tr><td>США</td><td>222</td><td>0,60%</td><td>16 с</td><td>1,02</td><td>71,17%</td></tr>
+          <tr><td>Турция</td><td>153</td><td>0,41%</td><td>1м21с</td><td>1,00</td><td>35,95%</td></tr>
+          <tr><td>Казахстан</td><td>101</td><td>0,27%</td><td>54 с</td><td>1,12</td><td>40,59%</td></tr>
+          <tr><td>Узбекистан</td><td>98</td><td>0,26%</td><td>42 с</td><td>1,07</td><td>44,90%</td></tr>
+          <tr><td>Германия</td><td>91</td><td>0,24%</td><td>58 с</td><td>1,09</td><td>46,15%</td></tr>
+          <tr><td>Таджикистан</td><td>86</td><td>0,23%</td><td>52 с</td><td>1,00</td><td>23,26%</td></tr>
+        </tbody>
+      </table>
+      <div class="legend" style="margin-top:8px">
+        <span>Заметные паттерны: США — короткие сессии и высокие отказы (профиль VPN/прокси). СНГ-страны и Турция — вовлечённость выше средней по сайту.</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="dev">
+    <h2>Устройства</h2>
+    <p class="section-sub">15–20 мая 2026, 37 261 визит</p>
+    <div class="grid kpis">
+      <div class="card">
+        <div class="lbl">Смартфоны</div>
+        <div class="val">30 477</div>
+        <div class="hint"><span class="pill purple">81,8%</span> · время 48 с · отказы 58,7%</div>
+      </div>
+      <div class="card">
+        <div class="lbl">ПК</div>
+        <div class="val">5 137</div>
+        <div class="hint"><span class="pill cyan">13,8%</span> · время 46 с · отказы 73,5%</div>
+      </div>
+      <div class="card">
+        <div class="lbl">Планшеты</div>
+        <div class="val">1 632</div>
+        <div class="hint"><span class="pill green">4,4%</span> · время 27 с · отказы 64,0%</div>
+      </div>
+      <div class="card">
+        <div class="lbl">ТВ</div>
+        <div class="val">15</div>
+        <div class="hint"><span class="pill amber">0,04%</span> · время 1 с · отказы 93,3%</div>
+      </div>
+    </div>
+    <div class="notebox">
+      Подавляющая часть аудитории — мобильная. Сегмент «ТВ» (15 визитов, ~1 с на сессию) по профилю похож на технический шум (SmartTV-браузеры, краулеры). При росте объёма стоит исключить из ремаркетинга.
+    </div>
+  </section><section id="channels">
+    <h2>Находки по каналам за год</h2>
+    <p class="section-sub">Все UTM-источники за 20.05.2025 — 20.05.2026, всего 34 426 визитов с метками</p>
     <div class="card" style="padding:8px 8px 4px">
       <table>
         <thead>
-          <tr>
-            <th>Показатель</th><th>post1</th><th>post2</th><th>post3</th>
-            <th>VK promo · итого</th><th>Прочая реклама</th><th>Весь сайт</th>
-          </tr>
+          <tr><th>UTM source</th><th>Визиты</th><th>Доля</th><th>Время</th><th>Глубина</th><th>Отказы</th></tr>
         </thead>
         <tbody>
-          <tr class="row-hl"><td>Визиты</td><td>1 937</td><td>1 707</td><td>1 188</td><td><b>4 832</b></td><td>27 968</td><td>36 993</td></tr>
-          <tr><td>Доля от сайта</td><td>5,2%</td><td>4,6%</td><td>3,2%</td><td><b>13,1%</b></td><td>75,6%</td><td>100%</td></tr>
-          <tr><td>Доля от рекламы</td><td>5,9%</td><td>5,2%</td><td>3,6%</td><td><b>14,7%</b></td><td>85,3%</td><td>—</td></tr>
-          <tr><td>Посетители</td><td>1 739</td><td>1 528</td><td>1 024</td><td><b>3 927</b></td><td>≈24 554</td><td>30 745</td></tr>
-          <tr><td>Время на сайте</td><td>27 с</td><td>22 с</td><td>14 с</td><td><b>22 с</b></td><td>≈27 с</td><td>47 с</td></tr>
-          <tr><td>Глубина просмотра</td><td>1,04</td><td>1,00</td><td>1,00</td><td><b>1,02</b></td><td>1,01</td><td>1,07</td></tr>
-          <tr><td>Отказы</td><td>69,4%</td><td>72,5%</td><td>78,4%</td><td><b>72,7%</b></td><td>≈64,9%</td><td>60,9%</td></tr>
-          <tr class="row-total"><td>Просмотры</td><td>2 024</td><td>1 710</td><td>1 190</td><td><b>4 924</b></td><td>≈28 276</td><td>39 724</td></tr>
+          <tr><td>yandex_banner</td><td>14 652</td><td>42,56%</td><td>18 с</td><td>1,00</td><td>74,33%</td></tr>
+          <tr><td>vkads</td><td>6 618</td><td>19,22%</td><td>32 с</td><td>1,02</td><td>61,29%</td></tr>
+          <tr class="row-hl"><td><b>vk · VK promo</b></td><td><b>4 902</b></td><td><b>14,24%</b></td><td>22 с</td><td>1,02</td><td>72,56%</td></tr>
+          <tr><td>first_data</td><td>3 726</td><td>10,82%</td><td>43 с</td><td>1,04</td><td>39,00%</td></tr>
+          <tr><td>yandex_olv</td><td>2 869</td><td>8,33%</td><td>42 с</td><td>1,00</td><td>57,65%</td></tr>
+          <tr><td>ingame</td><td>736</td><td>2,14%</td><td>1м5с</td><td>1,13</td><td>42,80%</td></tr>
+          <tr><td>tg</td><td>553</td><td>1,61%</td><td>3м40с</td><td>1,48</td><td>19,53%</td></tr>
+          <tr><td>ya_banner</td><td>129</td><td>0,37%</td><td>2 с</td><td>1,00</td><td>88,37%</td></tr>
+          <tr><td>offline</td><td>98</td><td>0,28%</td><td>2м45с</td><td>1,77</td><td>39,80%</td></tr>
+          <tr><td>twitch</td><td>83</td><td>0,24%</td><td>3м18с</td><td>1,20</td><td>21,69%</td></tr>
+          <tr><td>brandlink</td><td>21</td><td>0,06%</td><td>19м45с</td><td>7,57</td><td>14,29%</td></tr>
+          <tr><td>vk_adb</td><td>12</td><td>0,03%</td><td>1м40с</td><td>1,17</td><td>33,33%</td></tr>
+          <tr><td>can</td><td>7</td><td>0,02%</td><td>21м15с</td><td>4,14</td><td>14,29%</td></tr>
+          <tr><td>online</td><td>6</td><td>0,02%</td><td>5м26с</td><td>2,67</td><td>16,67%</td></tr>
         </tbody>
       </table>
     </div>
-  </section>
 
-  <section>
-    <h2>Выжимка по кампании</h2>
-    <div class="grid split">
-      <div class="card">
-        <h3>Что показала кампания</h3>
-        <ul class="takeaways">
-          <li><b>Заметная доля трафика.</b> 4 832 визита и 3 927 уникальных посетителей — это <b>13,1%</b> всего трафика сайта и <b>14,7%</b> рекламного трафика за период.</li>
-          <li><b>Аудитория фокусируется на промо-странице.</b> Глубина 1,02 и среднее время 22 с — характерный профиль охватного размещения в соцсетях.</li>
-          <li><b>Сбалансированное распределение по креативам.</b> post1 — 40,1%, post2 — 35,3%, post3 — 24,6% визитов кампании; все три креатива дали ощутимый вклад.</li>
-          <li><b>Лидер по вовлечению.</b> post1 — самое долгое среднее время на сайте (27 с) и наибольшая глубина (1,04) внутри кампании.</li>
-        </ul>
+    <div class="findings" style="margin-top:16px">
+      <div class="finding">
+        <div class="ftitle">VK promo · опорный канал</div>
+        <div class="fmeta">vk · 4 902 визита за год</div>
+        <div class="fdesc">Третий по объёму UTM-источник в истории счётчика. Стабильный охват целевой аудитории через три креатива post1 / post2 / post3.</div>
       </div>
-      <div class="card">
-        <h3>Контекст и точки развития</h3>
-        <ul class="takeaways">
-          <li><b>Structure трафика сайта.</b> Около 89% всех визитов сайта приходит из платных каналов, поэтому общесайтовые средние во многом формируются именно рекламой.</li>
-          <li><b>Особенности атрибуции.</b> В модели «Последний значимый переход» часть последующих визитов от привлечённой аудитории засчитывается другим источникам. Для оценки вклада охватных размещений рекомендуется параллельно смотреть отчёт в модели «Первый переход».</li>
-          <li><b>Зона для тестов.</b> Между креативами есть разброс по среднему времени на сайте — это естественная база для A/B-итераций сообщения и посадочной.</li>
-          <li><b>Унифицированный формат.</b> Кампания построена в едином UTM-формате (utm_medium=promo), что упрощает масштабирование лучших креативов в следующих волнах.</li>
-        </ul>
+      <div class="finding">
+        <div class="ftitle">tg · качественный объёмный канал</div>
+        <div class="fmeta">553 визита · 3м40с · отказы 19,5%</div>
+        <div class="fdesc">При сравнительно небольшом объёме показывает заметно более высокое вовлечение, чем большинство других источников. Кандидат на масштабирование.</div>
       </div>
-    </div>
-  </section>
-
-  <footer>
-    Источник: Яндекс.Метрика, счётчик 108484411 · период 15–20.05.2026 · атрибуция «Последний значимый переход», кросс-девайс
-  </footer>
-</div>
-</body>
-</html>
+      <div class="finding">
+        <div class="ftitle">ingame · нестандартная находка</div>
+        <div class="fmeta">736 визитов · 1м5с · глубина 1,13</div>
+        <div class="fdesc">Поведение аудитории ближе к лояльной, чем к холодной охватной. Если речь о размещении внутри игры — направление с потенциалом.</div>
+      </div>
+      <div class="finding">
+        <div class="ftitle">twitch · точечный, но качественный</div>
+        <div class="fmeta">83 визита · 3м18с · отказы 21,7%</div>
+        <div class="fdesc">Похоже на интеграции у стримеров. Малый объём, но устойчиво высокое вовлечение.</div>
+      </div>
+      <div class="finding">
+        <div class="ftitle">brandlink · «горячие» переходы
