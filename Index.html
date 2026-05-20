@@ -10,302 +10,132 @@
 
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
   :root {
     --bg:    #f4f3f1;
-    --bg2:   #eceae6;
     --ink:   #1a1917;
     --mid:   #5a5854;
     --muted: #9e9b96;
     --faint: #d6d3cd;
     --white: #fdfcfa;
   }
-
-  html, body { height: 100%; }
-
-  body {
-    background: var(--bg);
-    color: var(--ink);
-    font-family: 'DM Mono', monospace;
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-
+  html, body { height: 100%; background: var(--bg); color: var(--ink); font-family: 'DM Mono', monospace; }
   .page {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto 1fr auto;
     min-height: 100vh;
   }
-
-  /* HEADER */
-  header {
-    grid-column: 1 / -1;
-    padding: 36px 60px 28px;
-    border-bottom: 1px solid var(--faint);
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    opacity: 0;
-    animation: fadeIn 0.5s ease 0.1s forwards;
-  }
-
-  .logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 20px;
-    font-weight: 700;
-    letter-spacing: -0.5px;
-  }
-  .logo em { font-style: italic; color: var(--muted); }
-
-  .header-meta {
-    font-size: 10px;
-    color: var(--muted);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    text-align: right;
-    line-height: 1.9;
-  }
-
-  /* LEFT PANEL */
-  .left {
-    padding: 56px 56px 56px;
+  
+  /* LEFT SIDE: HERO INFRASTRUCTURE */
+  .left-panel {
+    padding: 60px;
     border-right: 1px solid var(--faint);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 48px;
-    opacity: 0;
-    animation: fadeIn 0.5s ease 0.2s forwards;
+    background: var(--bg);
   }
-
-  .hero-label {
-    font-size: 10px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 18px;
-  }
-
+  .logo { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; }
+  .logo em { font-style: italic; color: var(--muted); }
   .hero-title {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(38px, 4.5vw, 68px);
+    font-size: 56px;
     font-weight: 900;
-    line-height: 0.98;
-    letter-spacing: -2px;
-    margin-bottom: 24px;
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+    margin: 40px 0 20px;
   }
   .hero-title em { font-style: italic; color: var(--muted); }
-
-  .hero-sub {
-    font-size: 12px;
-    color: var(--mid);
-    line-height: 1.9;
-    max-width: 320px;
-  }
-
-  .counter-block {
-    border-top: 1px solid var(--faint);
-    padding-top: 24px;
-  }
+  .hero-desc { font-size: 13px; color: var(--mid); line-height: 1.8; max-width: 360px; }
   
-  .counter-title {
-    font-size: 10px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 12px;
-  }
+  .counter-box { border-top: 1px solid var(--faint); padding-top: 24px; margin-top: 40px; }
+  .counter-lbl { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  .counter-val { font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 700; }
+
+  /* RIGHT SIDE: STREAM LIST */
+  .right-panel { display: flex; flex-direction: column; background: var(--bg); }
   
-  .counter-value {
-    font-family: 'Playfair Display', serif;
-    font-size: 48px;
-    font-weight: 700;
-    color: var(--ink);
-    line-height: 1;
-  }
-
-  /* RIGHT PANEL (REPORTS LIST) */
-  .right {
-    display: flex;
-    flex-direction: column;
-    opacity: 0;
-    animation: fadeIn 0.5s ease 0.3s forwards;
-  }
-
-  .tool-card {
+  .report-card {
     flex: 1;
-    padding: 52px 52px 44px;
+    padding: 60px;
     text-decoration: none;
     color: inherit;
     display: flex;
     flex-direction: column;
-    gap: 14px;
-    position: relative;
-    overflow: hidden;
-    transition: background 0.25s;
-    border-bottom: 1px solid var(--faint);
-  }
-  .tool-card:last-child { border-bottom: none; }
-  .tool-card:hover { background: var(--white); }
-
-  /* DECORATIVE ELEMENTS */
-  .tool-card .deco-sector {
-    position: absolute;
-    left: -40px;
-    bottom: -40px;
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    background: var(--faint);
-    opacity: 0.15;
-    clip-path: polygon(100% 0, 100% 100%, 0 100%);
-    transition: opacity 0.3s;
-    pointer-events: none;
-  }
-  .tool-card:hover .deco-sector { opacity: 0.3; }
-
-  .card-num {
-    font-size: 10px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--muted);
-    position: relative; z-index: 1;
-  }
-
-  .card-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 30px;
-    font-weight: 700;
-    line-height: 1.1;
-    letter-spacing: -0.5px;
-    position: relative; z-index: 1;
-  }
-
-  .card-desc {
-    font-size: 12px;
-    color: var(--mid);
-    line-height: 1.8;
-    max-width: 340px;
-    position: relative; z-index: 1;
-  }
-
-  .card-pills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-    position: relative; z-index: 1;
-  }
-
-  .pill {
-    font-size: 9px;
-    padding: 3px 10px;
-    border: 1px solid var(--faint);
-    color: var(--muted);
-    border-radius: 20px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-  }
-  .tool-card:hover .pill { border-color: var(--muted); color: var(--mid); }
-
-  .card-arrow {
-    font-size: 18px;
-    color: var(--faint);
-    margin-top: auto;
-    transition: color 0.2s, transform 0.2s;
-    position: relative; z-index: 1;
-    width: fit-content;
-  }
-  .tool-card:hover .card-arrow { color: var(--ink); transform: translateX(6px); }
-
-  /* FOOTER */
-  footer {
-    grid-column: 1 / -1;
-    padding: 18px 60px;
-    border-top: 1px solid var(--faint);
-    display: flex;
     justify-content: space-between;
-    align-items: center;
-    font-size: 10px;
-    color: var(--muted);
-    letter-spacing: 1px;
-    opacity: 0;
-    animation: fadeIn 0.5s ease 0.5s forwards;
+    border-bottom: 1px solid var(--faint);
+    background: var(--bg);
+    transition: background 0.2s ease;
   }
+  .report-card:last-child { border-bottom: none; }
+  .report-card:hover { background: var(--white); }
+  
+  .card-meta { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); }
+  .card-title { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; margin: 12px 0; letter-spacing: -0.5px; }
+  .card-desc { font-size: 12px; color: var(--mid); line-height: 1.8; max-width: 400px; margin-bottom: 20px; }
+  
+  .pills { display: flex; flex-wrap: wrap; gap: 6px; }
+  .pill { font-size: 9px; padding: 4px 12px; border: 1px solid var(--faint); border-radius: 20px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+  .report-card:hover .pill { border-color: var(--muted); color: var(--mid); }
+  
+  .arrow { font-size: 20px; color: var(--faint); transition: transform 0.2s, color 0.2s; margin-top: 20px; }
+  .report-card:hover .arrow { color: var(--ink); transform: translateX(6px); }
 
-  .dot {
-    display: inline-block;
-    width: 5px; height: 5px;
-    border-radius: 50%;
-    background: #00F0FF;
-    margin-right: 7px;
-    animation: blink 2.5s ease-in-out infinite;
-  }
+  .dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #00F0FF; margin-right: 8px; }
 
-  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.2} }
-  @keyframes fadeIn { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
-
-  @media (max-width: 768px) {
+  /* RESPONSIVE SYSTEM */
+  @media (max-width: 900px) {
     .page { grid-template-columns: 1fr; }
-    .left { border-right: none; border-bottom: 1px solid var(--faint); padding: 40px 28px; }
-    .tool-card { padding: 36px 28px; }
-    header, footer { padding: 24px 28px; }
+    .left-panel { border-right: none; border-bottom: 1px solid var(--faint); padding: 40px 30px; }
+    .report-card { padding: 40px 30px; }
   }
 </style>
 </head>
 <body>
+
 <div class="page">
-
-<header>
-  <div class="logo">For<em>All</em></div>
-  <div class="header-meta">github.io / forall<br>Май 2026</div>
-</header>
-
-<div class="left">
-  <div>
-    <div class="hero-label">// global analytics</div>
-    <h1 class="hero-title">Data<br>Streams<br><em>hub</em></h1>
-    <p class="hero-sub">Изолированный репозиторий сквозных маркетинговых отчетов, внешних аудитов и выгрузок рекламных кампаний.</p>
-  </div>
-
-  <div class="counter-block">
-    <div class="counter-title">// загружено отчетов</div>
-    <div class="counter-value">01</div>
-  </div>
-</div>
-
-<div class="right">
   
-  <a class="tool-card" href="vk_promo_report.html" target="_blank" rel="noopener">
-    <div class="deco-sector"></div>
-    <div class="card-num">01 / Traffic Arbitrage</div>
-    <div class="card-title">VK Promo Report</div>
-    <p class="card-desc">Анализ эффективности промо-кампаний ВКонтакте: трафик, конверсии, стоимость удержания и ROI по кампаниям.</p>
-    <div class="card-pills">
-      <span class="pill">VK API</span>
-      <span class="pill">Marketing</span>
-      <span class="pill">ROI Analytics</span>
+  <div class="left-panel">
+    <div class="logo">For<em>all</em></div>
+    <div>
+      <h1 class="hero-title">Data<br>Streams<br><em>hub</em></h1>
+      <p class="hero-desc">Изолированная среда хранения, каталогизации и дистрибуции маркетинговой аналитики и сквозных отчетов.</p>
     </div>
-    <div class="card-arrow">→</div>
-  </a>
-
-  <div class="tool-card" style="opacity: 0.45; cursor: not-allowed; background: none;">
-    <div class="card-num">02 / Pipeline</div>
-    <div class="card-title">Next Report</div>
-    <p class="card-desc">Следующий аналитический модуль будет автоматически добавлен в этот слот при загрузке файла в репозиторий.</p>
-    <div class="card-pills">
-      <span class="pill">Pending</span>
+    <div class="counter-box">
+      <div class="counter-lbl">// Активные выгрузки</div>
+      <div class="counter-val">01</div>
     </div>
-    <div class="card-arrow" style="transform: none; color: var(--faint);">×</div>
   </div>
 
+  <div class="right-panel">
+    
+    <a href="vk_promo_report.html" class="report-card">
+      <div>
+        <div class="card-meta">01 / Трафик и ROI</div>
+        <h2 class="card-title">VK Promo Report</h2>
+        <p class="card-desc">Интерактивный дашборд рекламных кампаний ВКонтакте. Детализация стоимости привлечения, конверсий и эффективности по плейсментам.</p>
+        <div class="pills">
+          <span class="pill">VK API</span>
+          <span class="pill">Marketing</span>
+          <span class="pill">Live Data</span>
+        </div>
+      </div>
+      <div class="arrow">→ Открыть отчет</div>
+    </a>
+
+    <div class="report-card" style="opacity: 0.4; cursor: not-allowed; background: none;">
+      <div>
+        <div class="card-meta">02 / Ожидание данных</div>
+        <h2 class="card-title">Next Analytics Stream</h2>
+        <p class="card-desc">Новые аналитические выгрузки будут автоматически структурированы в данном техническом слоте.</p>
+        <div class="pills">
+          <span class="pill">Pipeline</span>
+        </div>
+      </div>
+      <div class="arrow">× Locked</div>
+    </div>
+
+  </div>
 </div>
 
-<footer>
-  <span><span class="dot"></span>alekseenkovads.github.io/ForAll</span>
-  <span>Data isolated · updated may 2026</span>
-</footer>
-
-</div>
 </body>
-</html> 
+</html>
